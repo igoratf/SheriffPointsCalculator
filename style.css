@@ -1,0 +1,44 @@
+.form-container {
+    width: 30%;
+    border: 2px solid;
+    margin-top: 10px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+    margin: 16px 0px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.btn-submit {
+    margin: 8px 0px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+.btn-opts {
+    text-align: center;
+    width: 300px;
+    margin: 8px 0px;
+    position: relative;
+    left: 50%;
+    transform: translate(-50%);
+}
+
+#playerForm {
+    display: none;
+}
+
+.card-container {
+    margin-right: 30px;
+    min-width: 250px!important;
+    max-width: 500px!important;
+}
+
+.board {
+    margin: 32px 0px 32px 32px!important;
+    display: inline-block;
+}
