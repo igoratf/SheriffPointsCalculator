@@ -87,7 +87,7 @@ function calculateScore() {
         if (player.apples > players[appleKQ[0]].apples) {
             appleKQ[1] = appleKQ[0];
             appleKQ[0] = i;
-        } else if (player.apples > players[appleKQ[1]].apples || appleKQ[0] === appleKQ) {
+        } else if (player.apples > players[appleKQ[1]].apples || appleKQ[0] === appleKQ[1]) {
             appleKQ[1] = i;
         }
 
@@ -142,6 +142,16 @@ function calculateScore() {
         players[chickenKQ[1]].score += 5;
     }
 
+    console.log('Rei das maçãs' + players[appleKQ[0]].name);
+    console.log('Rainha das maçãs ' + players[appleKQ[1]].name);
+    console.log('Rei dos pães' + players[breadKQ[0]].name);
+    console.log('Rainha dos pães ' + players[breadKQ[1]].name);
+    console.log('Rei dos queijos' + players[cheeseKQ[0]].name);
+    console.log('Rainha dos queijos ' + players[cheeseKQ[1]].name);
+    console.log('Rei das galinhas' + players[chickenKQ[0]].name);
+    console.log('Rainha das galinhas ' + players[chickenKQ[1]].name);
+
+
 
     for (let i=0; i<players.length; i++) {
         let player = players[i];
@@ -151,5 +161,35 @@ function calculateScore() {
         card.appendChild(score);    
     }
 
+    calculateAppleKing();
+
     
+}
+
+
+function calculateAppleKing() {
+    let king = [];
+    let queen = [];
+    let listByApple = players.sort((a, b) => {
+        if (a.apples > b.apples) {
+            return -1;
+        } else if (a.apples < b.apples) {
+            return 1;
+        } else {
+            return 0;
+        }
+    });
+
+    king.push(listByApple[0]);
+    for (let i=1; i<listByApple.length; i++) {
+        if (listByApple[i].apples === king[0].apples) {
+            king.push(listByApple[i]);
+        } else if (queen.length === 0 || listByApple[i].apples === queen[0].apples) {
+            queen.push(listByApple[i]);
+        }
+    }
+
+    console.log(listByApple);
+    console.log(king);
+    console.log(queen);
 }
