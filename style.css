@@ -8,6 +8,11 @@
     margin: 16px 0px;
 }
 
+.jumbotron {
+    width: 100%;
+}
+
+
 h1 {
     text-align: center;
 }
@@ -20,8 +25,9 @@ h1 {
 }
 
 .btn-opts {
+    font-size: 22px!important;
     text-align: center;
-    width: 300px;
+    width: 400px;
     margin: 8px 0px;
     position: relative;
     left: 50%;

@@ -81,6 +81,7 @@ function resetForm(name, apples, bread, cheese, chickens, contraband, coins) {
 }
 
 function calculateScore() {
+    update();
     if (players.length > 0) {
         for (let i=0; i<players.length; i++) {
             let player = players[i];
@@ -95,19 +96,28 @@ function calculateScore() {
     
         
         let scoreboard = players.sort((a,b) => b.score - a.score);
-        let winnerId = scoreboard[0].id;
+        let winners = [scoreboard[0]];
         for (let i=0; i<scoreboard.length; i++) {
             let player = scoreboard[i];
+            if (player.id !== winners[0].id && player.score == winners[0].score) {
+                winners.push(player);
+            }
             let score = document.createElement("span");
             score.innerHTML = `<strong>Score: ${player.score}</strong><br>`;
             console.log(player_board);
             let card = player_board.getElementsByClassName("card-text")[player.id];
             card.appendChild(score);    
         }
-        let winner = player_board.getElementsByClassName("card-container")[winnerId];
-        winner.children[0].className = "card border-success mb-3";
-        winner.children[0].children[0].textContent += " - Winner!";
-        winner.children[0].children[0].style = "color: green; font-weight: bold";
+
+        
+        for (let i=0; i<winners.length; i++) {
+        let winnerID = winners[i].id;
+        let winnerDOM = player_board.getElementsByClassName("card-container")[winnerID];
+        winnerDOM.children[0].className = "card border-success mb-3";
+        winnerDOM.children[0].children[0].textContent += " - Winner!";
+        winnerDOM.children[0].children[0].style = "color: green; font-weight: bold";
+        }
+        
         
     } else {
         alert('Invalid number of players');
