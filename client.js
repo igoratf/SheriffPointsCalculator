@@ -42,31 +42,58 @@ function toggleForm () {
 }
 
 function createPlayer() {
-    if (players.length < 5) {
-        let name = document.getElementById("name");
-        let apples = document.getElementById("apples");
-        let bread = document.getElementById("bread");
-        let cheese = document.getElementById("cheese");
-        let chickens = document.getElementById("chickens");
-        let contraband = document.getElementById("contraband");
-        let coins = document.getElementById("coins");
+    let name = document.getElementById("name");
+    let apples = document.getElementById("apples");
+    let bread = document.getElementById("bread");
+    let cheese = document.getElementById("cheese");
+    let chickens = document.getElementById("chickens");
+    let contraband = document.getElementById("contraband");
+    let coins = document.getElementById("coins");
+    let playerNum = players.length;
 
+    if (validateForm(name, apples, bread, cheese, chickens, contraband, coins, playerNum)) {
         players.push({
-            name: name.value,
-            apples: parseInt(apples.value),
-            bread: parseInt(bread.value),
-            cheese: parseInt(cheese.value),
-            chickens: parseInt(chickens.value),
-            contraband: parseInt(contraband.value),
-            coins: parseInt(coins.value),
-            id: players.length
-        });
-        resetForm(name, apples, bread, cheese, chickens, contraband, coins);
-        update();
+        name: name.value,
+        apples: parseInt(apples.value),
+        bread: parseInt(bread.value),
+        cheese: parseInt(cheese.value),
+        chickens: parseInt(chickens.value),
+        contraband: parseInt(contraband.value),
+        coins: parseInt(coins.value),
+        id: players.length
+    });
+    resetForm(name, apples, bread, cheese, chickens, contraband, coins);
+    update();
+    } 
+
+
+}
+
+function validateForm(name, apples, bread, cheese, chickens, contraband, coins, playerNum) {
+    let formInputs = [name, apples, bread, cheese, chickens, contraband, coins];
+    let valid = true;
+    if (playerNum > 5) {
+        valid = false;
+        alert('Invalid player quantity');
     } else {
-        alert('Invalid number of players');
+        for (let i=0; i<formInputs.length; i++) {
+            if (i === 0) {
+                if (!name.checkValidity()) {
+                    valid = false;
+                    alert('Insert a valid name');
+                }
+            } else {
+                if (!formInputs[i].checkValidity()) {
+                    valid = false;
+                    alert('Insert a valid ' + formInputs[i].id + ' number');
+                }
+                
+            }
+        }
     }
     
+
+    return valid;
 }
 
 
