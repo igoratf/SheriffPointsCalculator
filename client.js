@@ -10,8 +10,8 @@ function update() {
     var currentPlayers = players.map((p, i) => {
    
     return (`<div class="card-container text-white">
-    <div class="card border-info mb-3">
-  <div class="card-header bg-info">Player ${i+1}</div>
+    <div class="card border-primary mb-3">
+  <div class="card-header bg-primary">Player ${i+1}</div>
   <div class="card-body text-dark">
     <h5 class="card-title">${p.name}</h5>
     <p id="${p.id}" class="card-text">Apples: ${p.apples}<br>
