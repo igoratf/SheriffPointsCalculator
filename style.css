@@ -48,3 +48,10 @@ h1 {
     margin: 32px 0px 32px 32px!important;
     display: inline-block;
 }
+
+.center {
+    margin-top: 25%;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+}
