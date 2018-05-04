@@ -9,9 +9,9 @@ function update() {
     players.sort((a,b) => a.id - b.id);
     var currentPlayers = players.map((p, i) => {
    
-    return (`<div class="card-container">
-    <div class="card border-dark mb-3">
-  <div class="card-header">Player ${i+1}</div>
+    return (`<div class="card-container text-white">
+    <div class="card border-info mb-3">
+  <div class="card-header bg-info">Player ${i+1}</div>
   <div class="card-body text-dark">
     <h5 class="card-title">${p.name}</h5>
     <p id="${p.id}" class="card-text">Apples: ${p.apples}<br>
@@ -104,7 +104,6 @@ function calculateScore() {
             }
             let score = document.createElement("span");
             score.innerHTML = `<strong>Score: ${player.score}</strong><br>`;
-            console.log(player_board);
             let card = player_board.getElementsByClassName("card-text")[player.id];
             card.appendChild(score);    
         }
@@ -114,8 +113,8 @@ function calculateScore() {
         let winnerID = winners[i].id;
         let winnerDOM = player_board.getElementsByClassName("card-container")[winnerID];
         winnerDOM.children[0].className = "card border-success mb-3";
+        winnerDOM.children[0].children[0].className = "card-header bg-success";
         winnerDOM.children[0].children[0].textContent += " - Winner!";
-        winnerDOM.children[0].children[0].style = "color: green; font-weight: bold";
         }
         
         
