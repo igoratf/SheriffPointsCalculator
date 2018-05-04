@@ -72,12 +72,12 @@ function createPlayer() {
 
 function resetForm(name, apples, bread, cheese, chickens, contraband, coins) {
     name.value = '';
-    apples.value = '';
-    bread.value = '';
-    cheese.value = '';
-    chickens.value = '';
-    contraband.value = '';
-    coins.value = '';
+    apples.value = 0;
+    bread.value = 0;
+    cheese.value = 0;
+    chickens.value = 0;
+    contraband.value = 0;
+    coins.value = 0;
 }
 
 function calculateScore() {
