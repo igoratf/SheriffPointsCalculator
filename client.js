@@ -4,6 +4,7 @@ var playerFormVisibility = false;
 
 
 
+
 function update() {
     players.sort((a,b) => a.id - b.id);
     var currentPlayers = players.map((p, i) => {
@@ -41,26 +42,31 @@ function toggleForm () {
 }
 
 function createPlayer() {
-    let name = document.getElementById("name");
-    let apples = document.getElementById("apples");
-    let bread = document.getElementById("bread");
-    let cheese = document.getElementById("cheese");
-    let chickens = document.getElementById("chickens");
-    let contraband = document.getElementById("contraband");
-    let coins = document.getElementById("coins");
+    if (players.length <= 5) {
+        let name = document.getElementById("name");
+        let apples = document.getElementById("apples");
+        let bread = document.getElementById("bread");
+        let cheese = document.getElementById("cheese");
+        let chickens = document.getElementById("chickens");
+        let contraband = document.getElementById("contraband");
+        let coins = document.getElementById("coins");
 
-    players.push({
-        name: name.value,
-        apples: parseInt(apples.value),
-        bread: parseInt(bread.value),
-        cheese: parseInt(cheese.value),
-        chickens: parseInt(chickens.value),
-        contraband: parseInt(contraband.value),
-        coins: parseInt(coins.value),
-        id: players.length
-    });
-    // resetForm(name, apples, bread, cheese, chickens, contraband, coins);
-    update();
+        players.push({
+            name: name.value,
+            apples: parseInt(apples.value),
+            bread: parseInt(bread.value),
+            cheese: parseInt(cheese.value),
+            chickens: parseInt(chickens.value),
+            contraband: parseInt(contraband.value),
+            coins: parseInt(coins.value),
+            id: players.length
+        });
+        resetForm(name, apples, bread, cheese, chickens, contraband, coins);
+        update();
+    } else {
+        alert('Invalid number of players');
+    }
+    
 }
 
 
@@ -75,7 +81,7 @@ function resetForm(name, apples, bread, cheese, chickens, contraband, coins) {
 }
 
 function calculateScore() {
-    if (players.length > 0 && players.length <= 5) {
+    if (players.length > 0) {
         for (let i=0; i<players.length; i++) {
             let player = players[i];
             console.log(player);
@@ -88,12 +94,14 @@ function calculateScore() {
         calculateChickenKing();
     
         
-    
-        for (let i=0; i<players.length; i++) {
-            let player = players[i];
+        let scoreboard = players.sort((a,b) => b.score - a.score);
+        let winner = scoreboard[0];
+        for (let i=0; i<scoreboard.length; i++) {
+            let player = scoreboard[i];
             let score = document.createElement("span");
-            score.innerHTML = `<strong>Score: ${player.score}</strong>`;
-            let card = player_board.getElementById(player.id);
+            score.innerHTML = `<strong>Score: ${player.score}</strong><br>`;
+            console.log(player_board);
+            let card = player_board.getElementsByClassName("card-text")[player.id];
             card.appendChild(score);    
         }
     } else {
@@ -215,7 +223,6 @@ function calculateChickenKing() {
     }
 
     let longest_list = Math.max(kings.length, queens.length);
-    console.log('max aqui ' + longest_list);
 
     for (let i=0; i<longest_list; i++) {
         let playerKing = kings[i];
