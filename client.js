@@ -95,7 +95,7 @@ function calculateScore() {
     
         
         let scoreboard = players.sort((a,b) => b.score - a.score);
-        let winner = scoreboard[0];
+        let winnerId = scoreboard[0].id;
         for (let i=0; i<scoreboard.length; i++) {
             let player = scoreboard[i];
             let score = document.createElement("span");
@@ -104,6 +104,11 @@ function calculateScore() {
             let card = player_board.getElementsByClassName("card-text")[player.id];
             card.appendChild(score);    
         }
+        let winner = player_board.getElementsByClassName("card-container")[winnerId];
+        winner.children[0].className = "card border-success mb-3";
+        winner.children[0].children[0].textContent += " - Winner!";
+        winner.children[0].children[0].style = "color: green; font-weight: bold";
+        
     } else {
         alert('Invalid number of players');
     }
@@ -113,7 +118,7 @@ function calculateScore() {
     
 }
 
-
+// Add card footer
 function calculateAppleKing() {
     let kings = [];
     let queens = [];
