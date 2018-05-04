@@ -42,7 +42,7 @@ function toggleForm () {
 }
 
 function createPlayer() {
-    if (players.length <= 5) {
+    if (players.length < 5) {
         let name = document.getElementById("name");
         let apples = document.getElementById("apples");
         let bread = document.getElementById("bread");
