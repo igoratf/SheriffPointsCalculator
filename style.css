@@ -33,6 +33,7 @@ h1 {
 
 #playerForm {
     display: none;
+    padding: 8px;
 }
 
 .card-container {
