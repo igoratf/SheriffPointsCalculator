@@ -8,9 +8,6 @@
     margin: 16px 0px;
 }
 
-input:invalid{
-    border-color: red;
-}
 
 h1 {
     color: #FFF!important;
