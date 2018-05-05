@@ -112,14 +112,13 @@ function calculateScore() {
     if (players.length > 0) {
         for (let i=0; i<players.length; i++) {
             let player = players[i];
-            console.log(player);
             player.score = 2*player.apples + 3*player.bread + 3*player.cheese + 4*player.chickens + player.contraband + player.coins;
         }
     
-        calculateAppleKing();
-        calculateBreadKing();
-        calculateCheeseKing();
-        calculateChickenKing();
+        calculateKingAndQueen('apples');
+        calculateKingAndQueen('bread');
+        calculateKingAndQueen('cheese');
+        calculateKingAndQueen('chickens');
     
         
         let scoreboard = players.sort((a,b) => b.score - a.score);
@@ -154,128 +153,40 @@ function calculateScore() {
     
 }
 
-// Add card footer
-function calculateAppleKing() {
-    let kings = [];
+function calculateKingAndQueen(resource) {
+    let kings =[];
     let queens = [];
-    let listByApple = players.sort((a, b) => a.apples > b.apples ? -1 : 1);
+    let listByResource = players.sort((a,b) => a[resource] > b[resource] ? -1 : 1);
 
-    kings.push(listByApple[0]);
-    for (let i=1; i<listByApple.length; i++) {
-        if (listByApple[i].apples === kings[0].apples) {
-            kings.push(listByApple[i]);
-        } else if (queens.length === 0 || listByApple[i].apples === queens[0].apples) {
-            queens.push(listByApple[i]);
-        }
-    }
-
-    console.log(kings);
-
-    let longest_list = Math.max(kings.length, queens.length);
-
-    for (let i=0; i<longest_list; i++) {
-        let playerKing = kings[i];
-        let playerQueen = queens[i];
-
-        if (playerKing) {playerKing.score += 20;}
-        if (playerQueen) {playerQueen.score += 10;}
-    }
-
-    console.log('Apple kings\n');
-    console.log(kings);
-    console.log('Apple queens\n');
-    console.log(queens);
-
-}
-
-function calculateBreadKing() {
-    let kings = [];
-    let queens = [];
-    let listByBread = players.sort((a, b) => a.bread > b.bread ? -1 : 1 );
-
-    kings.push(listByBread[0]);
-    for (let i=1; i<listByBread.length; i++) {
-        if (listByBread[i].bread === kings[0].bread) {
-            kings.push(listByBread[i]);
-        } else if (queens.length === 0 || listByBread[i].bread === queens[0].bread) {
-            queens.push(listByBread[i]);
+    kings.push(listByResource[0]);
+    for (let i=1; i<listByResource.length; i++) {
+        if (listByResource[i][resource] === kings[0][resource]) {
+            kings.push(listByResource[i]);
+        } else if (queens.length === 0 || listByResource[i][resource] === queens[0][resource]) {
+            queens.push(listByResource[i]);
         }
     }
 
     let longest_list = Math.max(kings.length, queens.length);
+    let bonusKing;
+    let bonusQueen;
+
+    if (resource === 'apples') {
+        bonusKing = 20;
+        bonusQueen = 10;
+    } else if (resource === 'bread' || resource === 'cheese') {
+        bonusKing = 15;
+        bonusQueen = 10;
+    } else {
+        bonusKing = 10;
+        bonusQueen = 5;
+    }
 
     for (let i=0; i<longest_list; i++) {
-        let playerKing = kings[i];
-        let playerQueen = queens[i];
-
-        if (playerKing) {playerKing.score += 15;}
-        if (playerQueen) {playerQueen.score += 10;}
+        let kingPlayer = kings[i];
+        let queenPlayer = queens[i];
+        
+        if (kingPlayer) {kingPlayer['score'] += bonusKing;}
+        if (queenPlayer) {queenPlayer['score'] += bonusQueen;}
     }
-
-    console.log('Bread kings\n');
-    console.log(kings);
-    console.log('Bread queens\n');
-    console.log(queens);
-}
-
-function calculateCheeseKing() {
-    let kings = [];
-    let queens = [];
-    let listByCheese = players.sort((a, b) => a.cheese > b.cheese ? -1 : 1 );
-
-    kings.push(listByCheese[0]);
-    for (let i=1; i<listByCheese.length; i++) {
-        if (listByCheese[i].cheese === kings[0].cheese) {
-            kings.push(listByCheese[i]);
-        } else if (queens.length === 0 || listByCheese[i].cheese === queens[0].cheese) {
-            queens.push(listByCheese[i]);
-        }
-    }
-
-    let longest_list = Math.max(kings.length, queens.length);
-
-    for (let i=0; i<longest_list; i++) {
-        let playerKing = kings[i];
-        let playerQueen = queens[i];
-
-        if (playerKing) {playerKing.score += 15;}
-        if (playerQueen) {playerQueen.score += 10;}
-    }
-
-    console.log('Cheese kings\n');
-    console.log(kings);
-    console.log('Cheese queens\n');
-    console.log(queens);
-    
-}
-
-function calculateChickenKing() {
-    let kings = [];
-    let queens = [];
-    let listByChicken = players.sort((a, b) => a.chickens > b.chickens ? -1 : 1 );
-
-    kings.push(listByChicken[0]);
-    for (let i=1; i<listByChicken.length; i++) {
-        if (listByChicken[i].chickens === kings[0].chickens) {
-            kings.push(listByChicken[i]);
-        } else if (queens.length === 0 || listByChicken[i].chickens === queens[0].chickens) {
-            queens.push(listByChicken[i]);
-        }
-    }
-
-    let longest_list = Math.max(kings.length, queens.length);
-
-    for (let i=0; i<longest_list; i++) {
-        let playerKing = kings[i];
-        let playerQueen = queens[i];
-
-        if (playerKing) {playerKing.score += 10;}
-        if (playerQueen) {playerQueen.score += 5;}
-    }
-
-    console.log('Chicken kings\n');
-    console.log(kings);
-    console.log('Chicken queens\n');
-    console.log(queens);
-    
 }
