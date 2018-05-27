@@ -1,3 +1,7 @@
+html {
+    overflow: scroll;
+}
+
 .form-container {
     width: 30%;
     border: 2px solid;
@@ -6,6 +10,20 @@
     left: 50%;
     transform: translate(-50%);
     margin: 16px 0px;
+}
+
+.primary-theme {
+    background-color: midnightblue!important;
+}
+
+.btn-outline-primary {
+    color: midnightblue!important;
+    border-color: midnightblue!important;
+}
+
+.btn-outline-primary:hover {
+    color: white!important;
+    background-color: midnightblue!important;
 }
 
 
@@ -25,6 +43,8 @@ h1 {
     font-size: 22px!important;
     text-align: center;
     width: 25%;
+    min-width: 250px;
+    max-width: 400px;
     margin: 8px 0px;
     position: relative;
     left: 50%;
