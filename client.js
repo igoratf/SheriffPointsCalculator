@@ -10,8 +10,8 @@ function update() {
     var currentPlayers = players.map((p, i) => {
    
     return (`<div class="card-container text-white">
-    <div class="card border-primary mb-3">
-  <div class="card-header bg-primary">Player ${i+1}</div>
+    <div class="card border-card mb-3">
+  <div class="card-header bg-card">Player ${i+1}</div>
   <div class="card-body text-dark">
     <h5 class="card-title">${p.name}</h5>
     <p id="${p.id}" class="card-text">Apples: ${p.apples}<br>
@@ -138,8 +138,8 @@ function calculateScore() {
         for (let i=0; i<winners.length; i++) {
         let winnerID = winners[i].id;
         let winnerDOM = player_board.getElementsByClassName("card-container")[winnerID];
-        winnerDOM.children[0].className = "card border-success mb-3";
-        winnerDOM.children[0].children[0].className = "card-header bg-success";
+        winnerDOM.children[0].className = "card border-winner mb-3";
+        winnerDOM.children[0].children[0].className = "card-header bg-winner";
         winnerDOM.children[0].children[0].textContent += " - Winner!";
         }
         

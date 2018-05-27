@@ -16,13 +16,30 @@ html {
     background-color: midnightblue!important;
 }
 
-.btn-create {
+.btn-new {
     background: white;
     color: midnightblue;
     border-color: midnightblue!important;
 }
 
-.btn-create:hover {
+.bg-card {
+    background-color: indigo!important;
+}
+
+.border-card {
+    border-color: indigo!important;
+}
+
+.bg-winner {
+    background-color: green!important;
+}
+
+.border-winner {
+    border-color: green!important;
+}
+
+
+.btn-new:hover {
     color: white;
     background-color: midnightblue!important;
 }
