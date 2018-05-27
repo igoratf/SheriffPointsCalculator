@@ -16,14 +16,26 @@ html {
     background-color: midnightblue!important;
 }
 
-.btn-outline-primary {
-    color: midnightblue!important;
+.btn-create {
+    background: white;
+    color: midnightblue;
     border-color: midnightblue!important;
 }
 
-.btn-outline-primary:hover {
-    color: white!important;
+.btn-create:hover {
+    color: white;
     background-color: midnightblue!important;
+}
+
+.btn-calculate {
+    background: white;
+    color: darkgreen;
+    border-color: darkgreen!important;
+}
+
+.btn-calculate:hover {
+    color: white;
+    background-color: darkgreen!important;
 }
 
 
