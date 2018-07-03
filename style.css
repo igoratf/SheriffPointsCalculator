@@ -13,7 +13,7 @@ html {
 }
 
 .primary-theme {
-    background-color: midnightblue!important;
+    background-color: #B8860B!important;
 }
 
 .btn-new {
@@ -23,11 +23,11 @@ html {
 }
 
 .bg-card {
-    background-color: indigo!important;
+    background-color: #8B0000!important;
 }
 
 .border-card {
-    border-color: indigo!important;
+    border-color: #8B0000!important;
 }
 
 .bg-winner {
